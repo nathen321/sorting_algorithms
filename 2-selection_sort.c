@@ -7,23 +7,24 @@
 void selection_sort(int *array, size_t size)
 {
 	size_t idx, i = 0;
-	int swap, q = 0;
+	int swap, q = 0, tmp = 0;
 
 	if (!array || !size)
 		return;
-	while (i <= size)
+	while (i < size)
 	{
-		swap = array[i];
-		for (idx = i; idx < size; idx++)
+		tmp = i;
+		for (idx = i + 1; idx < size; idx++)
 		{
-			if (swap > array[idx])
+			if (array[tmp] > array[idx])
 			{
-				array[i] = array[idx];
-				array[idx] = swap;
-				swap = array[i];
+				tmp = idx;
 				q = 1;
 			}
 		}
+		swap = array[i];
+		array[i] = array[tmp];
+		array[tmp] = swap;
 		if (q != 0)
 		{
 			print_array(array, size);
